@@ -14,9 +14,6 @@
     "com.unity.textmeshpro": "3.0.6",
     "com.demigiant.dotween": "1.2.745"
   },
-  "unityRelease": {
-    "1.0.0": "2022.3"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/LuismiCeinpro/Portal.git"
