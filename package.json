@@ -11,8 +11,7 @@
     "url": "https://ceinpro.com"
   },
   "dependencies": {
-    "com.unity.textmeshpro": "3.0.6",
-    "com.demigiant.dotween": "1.2.745"
+    "com.unity.textmeshpro": "3.0.6"
   },
   "repository": {
     "type": "git",
