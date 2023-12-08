@@ -1,0 +1,25 @@
+{
+  "name": "com.ceinpro.portal",
+  "displayName": "Portal",
+  "version": "1.0.0",
+  "description": "Un paquete para manejar portales en Unity.",
+  "unity": "2022.3",
+  "keywords": ["portal", "unity"],
+  "author": {
+    "name": "Ceinpro",
+    "email": "luismi@ceinpro.es",
+    "url": "https://ceinpro.com"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6",
+    "com.demigiant.dotween": "1.2.745"
+  },
+  "unityRelease": {
+    "1.0.0": "2022.3" // Puedes especificar versiones específicas de Unity
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuismiCeinpro/Portal.git"
+  },
+  "license": "MIT"
+}
