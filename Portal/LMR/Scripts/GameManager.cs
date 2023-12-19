@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Player player { get { return _player; } }
     // Propiedad que permite acceder al GameManager
     public static GameManager instance { get; private set; }
+    public InteractionType interactionType { get; private set; }
 
     // Inicialización de la clase
     private void Awake()
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
         // Si existe una instancia previa, destruímos la actual
         else Destroy(gameObject);
     }
+
+    public void SetInteractionType(InteractionType type)
+    {
+        interactionType = type;
+    }
     
     public IEnumerator DetachPlayer(TestingStartPosition testing)
     {
@@ -49,5 +55,13 @@ public class GameManager : MonoBehaviour
             _playerContainer.GetChild(0).SetParent(null);
             yield return null;
         }
+    }
+
+    public enum InteractionType
+    {
+        Outline,
+        Crosshair,
+        Both,
+        None
     }
 }
