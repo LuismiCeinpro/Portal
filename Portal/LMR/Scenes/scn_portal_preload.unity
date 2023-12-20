@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8aea4f8838747428004055af2edb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadTestScene: 0
   _testScene: scn_portal_hub
   _playerContainer: {fileID: 1692431991}
   _player:
@@ -836,7 +837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1692431991
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactionLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _raycastOrigin: {fileID: 620062650106426109}
   _raycastDistance: 3
 --- !u!143 &4799212098505773656 stripped

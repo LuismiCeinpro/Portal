@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 // Clase que controla el juego
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public string _testScene;
+    [SerializeField] private bool _loadTestScene;
+    [SerializeField] private string _testScene;
     [SerializeField] private Transform _playerContainer;
     [SerializeField] private Player _player;
     // Variable que contiene el controlador de portales
@@ -32,10 +33,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             // Indicamos que el objeto no se destruya con el cambio de escenas
             DontDestroyOnLoad(gameObject);
-            if (!string.IsNullOrEmpty(_testScene))
-            {
-                SceneManager.LoadScene(_testScene);
-            }
+            if (!string.IsNullOrEmpty(_testScene) && _loadTestScene) SceneManager.LoadScene(_testScene);
+            else SceneManager.LoadScene("scn_portal_main_menu");
         }
         // Si existe una instancia previa, destruímos la actual
         else Destroy(gameObject);
