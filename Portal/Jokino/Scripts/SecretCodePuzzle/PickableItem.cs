@@ -3,47 +3,54 @@ using UnityEngine;
 
 public class PickableItem : BaseInteractable
 {
-
     // Variables referentes al controlador del jugador
     [Header("Player settings")]
     [SerializeField] public Transform PickupTarget;
     [Space]
-    public Rigidbody CurrentObject;
+    public Rigidbody CurrentObject = null;
     public bool IsPlaced = false;
+    private int count;
 
+
+    private void Start()
+    {
+        PickupTarget = GameObject.Find("PickupPoint").transform;
+
+    }
     protected override void OnActivate()
     {
-        Debug.Log("test");
+
         if (CurrentObject)
         {
             CurrentObject.useGravity = true;
             CurrentObject = null;
-            return;
         }
-        else
+        else if (!CurrentObject)
         {
+            Debug.Log("pickup");
             CurrentObject = transform.GetComponent<Rigidbody>();
             CurrentObject.useGravity = false;
             enabled = true;
         }
 
     }
+
     void Update()
     {
         if (CurrentObject)
         {
-                if (IsPlaced)
-                {
-                    CurrentObject = null;
-                    return;
-                }   
-          
+            if (IsPlaced)
+            {
+                CurrentObject = null;
+                return;
+            }
+
         }
         if (Input.GetKeyDown(KeyCode.E) && CurrentObject)
         {
-            CurrentObject.useGravity = true;
-            CurrentObject = null;
-            enabled = false;
+            //CurrentObject.useGravity = true;
+            //CurrentObject = null;
+            //enabled = false;
             return;
         }
     }

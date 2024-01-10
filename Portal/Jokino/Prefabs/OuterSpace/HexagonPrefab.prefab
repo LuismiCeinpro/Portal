@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3668872830011449895}
   m_Layer: 0
   m_Name: HexagonPrefab
-  m_TagString: Untagged
+  m_TagString: HexagonTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,3 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01df35c626fb1b4a9bff8e5350f3d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 0
+  rowSize: 0
+  col: 0
+  colSize: 0
+  IsOnBorder: 0
+  adjacentTileChildPositions: 
+  adjacentTiles: []
+  HexGrid: {fileID: 0}

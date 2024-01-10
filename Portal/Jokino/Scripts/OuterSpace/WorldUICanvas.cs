@@ -64,7 +64,20 @@ public class WorldUICanvas : MonoBehaviour
                 {
                     // Update the position of the cursor to match the hit position
                     
-                    Debug.Log("Hit " + result.gameObject.name); 
+                    Debug.Log("Hit " + result.gameObject.name);
+                    int c = 1;
+                    if (result.gameObject.CompareTag("HexagonTile"))
+                    {
+                        foreach (GameObject tile in result.gameObject.GetComponent<GridSlot>().adjacentTiles)
+                        {
+                            Debug.Log("ADJACENT TILE " + c + " :" + tile.name);
+                            c++;
+                        }
+                        c = 1;
+                        c = 1;
+                        
+                    }
+                   
                     if (result.gameObject.tag.ToLower() == "draggable")
                     {
                         DraggableItem draggableItemScript = result.gameObject.GetComponent<DraggableItem>();

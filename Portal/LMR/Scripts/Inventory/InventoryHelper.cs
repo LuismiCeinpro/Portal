@@ -21,5 +21,15 @@ namespace Gameplay
         {
             GameManager.instance.player.Inventory.Remove(id);
         }
+        public bool Search(string id)
+        {
+            bool isOnInventory = GameManager.instance.player.Inventory.OnItemCheck(id);
+            return isOnInventory;
+        }
+        public void OpenInventory(UseInventoryObject origin)
+        {
+            GameManager.instance.player.Inventory.ToggleInventory(origin);
+        }
+
     }
 }

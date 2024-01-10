@@ -16,6 +16,8 @@ namespace Gameplay
         [SerializeField] private TextMeshProUGUI _itemDescription;
         private SortedList<string, InventoryCell> _items;
 
+        private bool _isInventoryVisible = false;
+
         private void Start()
         {
             _items = new SortedList<string, InventoryCell>();
@@ -31,9 +33,23 @@ namespace Gameplay
             _items.Add(item.id, instance);
         }
 
+
+        public bool OnItemCheck(string id)
+        {
+            bool IsOnInventory = false;
+            foreach (string key in _items.Keys)
+            {
+                if (id == key)
+                {
+                    IsOnInventory = true;
+                }
+            }
+            return IsOnInventory;
+        }
+
         private void OnItemSelect(InventoryItemScriptableObject item)
         {
-            
+
         }
 
         private void OnItemExit(InventoryItemScriptableObject item)
@@ -60,8 +76,32 @@ namespace Gameplay
             }
         }
 
-        private void ToggleInventory()
+        public void ToggleInventory()
         {
+            if (_isInventoryVisible)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Confined;
+                _containerCanvasGroup.DOFadeOut();
+                _isInventoryVisible = !_isInventoryVisible;
+            }
+            else if (!_isInventoryVisible)
+            {
+                if (_items.Count == 0) _itemDescription.text = "No llevas ningún objeto contigo.";
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                _containerCanvasGroup.DOFadeIn();
+                _isInventoryVisible = !_isInventoryVisible;
+            }
+        }
+
+        public void ToggleInventory(UseInventoryObject origin)
+        {
+            if (_items.Count == 0) _itemDescription.text = "No llevas ningún objeto contigo.";
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            _containerCanvasGroup.DOFadeIn();
+            _isInventoryVisible = !_isInventoryVisible;
 
         }
 
@@ -69,19 +109,7 @@ namespace Gameplay
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (_containerCanvasGroup.alpha > 0)
-                {
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Confined;
-                    _containerCanvasGroup.DOFadeOut();
-                }
-                else if (_containerCanvasGroup.alpha < 1)
-                {
-                    if (_items.Count == 0) _itemDescription.text = "No llevas ningún objeto contigo.";
-                    Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    _containerCanvasGroup.DOFadeIn();
-                }
+                ToggleInventory();
             }
         }
     }
