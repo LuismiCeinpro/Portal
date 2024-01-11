@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class MainMenuBehaviour : MonoBehaviour
 {
+    [Header("Menu canvas")]
+    [SerializeField] private int _mainMenuCanvasIndex;
     [SerializeField] private CanvasGroup[] _canvasGroups;
     private int _currentCanvasGroup;
+    [Header("Main menu backgrounds")]
+    [SerializeField] private CanvasGroup[] _backgrounds;
+    private int _currentBackgroundIndex = -1;
 
     private void Start()
     {
@@ -19,8 +24,13 @@ public class MainMenuBehaviour : MonoBehaviour
         {
             _currentCanvasGroup++;
             _canvasGroups[_currentCanvasGroup].DOFadeIn();
+            if (_currentCanvasGroup == _mainMenuCanvasIndex) SelectBackground();
         });
-        
+    }
+
+    private void SelectBackground()
+    {
+        _currentBackgroundIndex++;
     }
 
     public void SelectInteractionType(int type)
