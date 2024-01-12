@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ae2f435cc0f894c8f6d076c545e6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuCanvasIndex: 0
+  _mainMenuCanvasIndex: 2
   _canvasGroups:
   - {fileID: 1702599455}
   - {fileID: 1314608378}
