@@ -65,7 +65,7 @@ public class CodeLineScript : MonoBehaviour
             foreach (GemStatus g in PlacedGems)
             {
                 g.Resolve();
-            }s
+            }
 
             if (IsCodeCorrect)
             {
