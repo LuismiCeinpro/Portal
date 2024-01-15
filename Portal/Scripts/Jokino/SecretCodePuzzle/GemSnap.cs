@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class GemSnap : MonoBehaviour
 {
-    // Declase a list with all possible gems
-    public List<string> GemTags = new List<string> {"RedGem","BlackGem", "GreenGem", "BlueGem"};
+    // Declare a list with all possible gems
+    private List<string> GemTags = new List<string> {"OrangeGem","PinkGem", "PurpleGem", "BlueGem"};
     public string listenToTag = "Gem";
     public bool GemIsSnapped = false;
     public string CorrectGem;
