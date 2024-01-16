@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class SecretCodeResolve : MonoBehaviour
 {
-    public List<CodeLineScript> Lines = new List<CodeLineScript>();
+    public List<CodeLineScript> Lines = new List<CodeLineScript>(); 
+    private int lineNumber=0;
     void Start()
     {
         // Step 5: Subscribe to the event in another script
         CodeLineScript.OnFinish += MyEventHandlerMethod;
-        Lines[0].enabled = true;
+        Lines[lineNumber].enabled = true;
     }
 
     private void MyEventHandlerMethod(bool correct)
     {
-        if (correct)
+        if (!correct)
         {
-            Debug.Log("incorrect code");
+            Debug.Log("YouRs DId iT*");
+     
         }
         else
         {
-            Debug.Log("YouRs DId iT*");
+            int count = 0;
+            foreach (PedestalStatus status in Lines[lineNumber].gameObject.transform)
+            {
+                Lines[lineNumber+1].gameObject.transform.GetChild(count).GetComponent<PedestalStatus>().CorrectGem=status.CorrectGem;
+ 
+            }
+            lineNumber++;
+            Lines[lineNumber].enabled = true;
+            
+            Debug.Log("incorrect code");
+
         }
     }
 
