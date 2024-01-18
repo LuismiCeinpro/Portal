@@ -12,14 +12,13 @@ public class GemSnap : MonoBehaviour
     public void Awake()
     {
         PedestalStatus status = transform.parent.GetComponent<PedestalStatus>();
-        Debug.Log(status.CorrectGem);
-
+        //Debug.Log(status.CorrectGem);
+        Line = transform.parent.gameObject.transform.parent.gameObject;
         if (status.CorrectGem.Length<2)
         {
-            CorrectGem = GemTags[Random.Range(0, 4)];
-            Line = transform.parent.gameObject.transform.parent.gameObject;
-            Debug.Log(transform.parent.name + " " + " " + CorrectGem);
-            //status.CorrectGem = CorrectGem;
+            CorrectGem = GemTags[Random.Range(0, 4)];       
+            Debug.Log(transform.parent.name + " " + " " + CorrectGem, gameObject);
+            status.CorrectGem = CorrectGem;
         }
         else
         {
@@ -29,22 +28,25 @@ public class GemSnap : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        GemStatus GemStatusScript = other.GetComponent<GemStatus>();
+        GemStatus GemStatusScript = null;
+        if (!other.TryGetComponent(out GemStatusScript)) return;
         GameObject Gem = other.gameObject;
         foreach ( string tag in GemTags) {
             if (other.CompareTag(tag) && !GemIsSnapped)
             {
                 Rigidbody rb = other.GetComponent<Rigidbody>();
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+               // rb.velocity = Vector3.zero;
+               // rb.angularVelocity = Vector3.zero;
                 rb.rotation = Quaternion.identity;
+                rb.isKinematic = true;
                 Gem.transform.position = transform.position;
-                Gem.layer = LayerMask.NameToLayer("Default");
-                Gem.GetComponent<BoxCollider>().enabled = false;
+                Gem.layer = LayerMask.NameToLayer("PlacedGem");
+                //Gem.GetComponent<BoxCollider>().enabled = false;
                 Gem.GetComponent<Rigidbody>().useGravity = false;
                 if (other.CompareTag(CorrectGem))
                 {
                     other.gameObject.GetComponent<PickableItem>().IsPlaced = true;
+                    other.gameObject.GetComponent<GemStatus>().IsPlaced = true;
                     GemStatusScript.IsCorrectlyPlaced = true;
                     Line.GetComponent<CodeLineScript>().AddGem(GemStatusScript);
                 }

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7769561117650701498}
   m_Layer: 6
   m_Name: PurpleGem
-  m_TagString: PinkGem
+  m_TagString: PurpleGem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
