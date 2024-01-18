@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuBehaviour : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class MainMenuBehaviour : MonoBehaviour
     [SerializeField] private CanvasGroup[] _canvasGroups;
     private int _currentCanvasGroup;
     [Header("Main menu backgrounds")]
-    [SerializeField] private RectTransform _backgroundsParent;
-    [SerializeField] private CanvasGroup[] _backgrounds;
-    private int _currentBackgroundIndex = -1;
+    [SerializeField] private CanvasGroup _background;
+    [SerializeField] private Image _backgroundImage;
+    [SerializeField] private Sprite[] _backgrounds;
+    private int _currentBackgroundIndex = 0;
     private Vector3 _backgroundDirection;
 
     private void Start()
@@ -33,11 +35,18 @@ public class MainMenuBehaviour : MonoBehaviour
 
     private IEnumerator SelectBackground()
     {
+        _background.transform.localPosition = Vector3.zero;
         _currentBackgroundIndex++;
         if (_currentBackgroundIndex >= _backgrounds.Length) _currentBackgroundIndex = 0;
-        _backgroundDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+        _backgroundDirection.x = Random.Range(0, 1) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
+        _backgroundDirection.y = Random.Range(0, 1) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
         yield return new WaitForSeconds(5f);
-        StartCoroutine(SelectBackground());
+        _background.DOFadeOut(() =>
+        {
+            _backgroundImage.sprite = _backgrounds[_currentBackgroundIndex];
+            StartCoroutine(SelectBackground());
+            _background.DOFadeIn();
+        });
     }
 
     public void SelectInteractionType(int type)
@@ -48,6 +57,6 @@ public class MainMenuBehaviour : MonoBehaviour
     private void Update()
     {
         if (_currentBackgroundIndex == -1) return;
-        _backgroundsParent.Translate(_backgroundDirection * Time.deltaTime * 10f);
+        _background.transform.Translate(_backgroundDirection * Time.deltaTime * 10f);
     }
 }

@@ -32,6 +32,14 @@ namespace Extensions
             canvasGroup.DOFade(1f, 0.3f).SetEase(Ease.OutQuad);
         }
 
+        public static void DOFadeIn(this CanvasGroup canvasGroup, Action onComplete)
+        {
+            canvasGroup.gameObject.SetActive(true);
+            canvasGroup.DOFade(1f, 0.3f).SetEase(Ease.OutQuad).OnComplete(() => {
+                onComplete.Invoke();
+            });
+        }
+
         public static void DOFadeOut(this CanvasGroup canvasGroup)
         {
             canvasGroup.DOFade(0f, 0.3f).SetEase(Ease.OutQuad).OnComplete(() => canvasGroup.gameObject.SetActive(false));
