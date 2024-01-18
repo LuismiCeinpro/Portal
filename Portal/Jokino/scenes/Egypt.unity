@@ -1615,6 +1615,152 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5360262790124974221, guid: c90f543f0bd406a4d87d8fb41057d873, type: 3}
+--- !u!1001 &1510600916
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1201124457538140888, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: color
+      value: Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124457538140888, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 7300152337441828132, guid: 7e454348390c6d94dbcb07b67163a60f,
+        type: 3}
+    - target: {fileID: 1201124457538140893, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
+        type: 3}
+    - target: {fileID: 1201124458279939750, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Name
+      value: Gembags
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.7504225
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.71103525
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458279939751, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458395534520, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
+        type: 3}
+    - target: {fileID: 1201124458395534523, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: color
+      value: Purple
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458395534523, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 7032449906958866802, guid: 0bd8d6ffe9d526e4d9fdfd099c1da6a5,
+        type: 3}
+    - target: {fileID: 1201124458395534526, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Name
+      value: PurpleChalice
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458998112864, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Name
+      value: PinkChalice
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458998112865, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: color
+      value: Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124458998112865, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 1537229418442924153, guid: 3d681c05795016843bdc86152baaaaaf,
+        type: 3}
+    - target: {fileID: 1201124458998112867, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
+        type: 3}
+    - target: {fileID: 1201124459006289313, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: color
+      value: Orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201124459006289313, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: gemPrefab
+      value: 
+      objectReference: {fileID: 4550913036210634883, guid: 80ec12f45bbad3d45bb9f4bcd4e68060,
+        type: 3}
+    - target: {fileID: 1201124459006289315, guid: c8671a5fe08b26044bbdbc691a5365ce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e,
+        type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8671a5fe08b26044bbdbc691a5365ce, type: 3}
 --- !u!1001 &1533348569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2577,3 +2723,4 @@ SceneRoots:
   - {fileID: 1208734433}
   - {fileID: 1687879845}
   - {fileID: 1721545113}
+  - {fileID: 1510600916}

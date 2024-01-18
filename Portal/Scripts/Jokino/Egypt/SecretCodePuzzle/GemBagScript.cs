@@ -13,6 +13,11 @@ public class GemBagScript : BaseInteractable
     public string color;
     public GameObject gemPrefab;
 
+    private void Start()
+    {
+        PickupTarget = GameObject.Find("PickupPoint").transform;
+
+    }
     protected override void OnActivate()
     {
         GameObject pr = Instantiate(gemPrefab, PickupTarget.transform.position, Quaternion.identity);

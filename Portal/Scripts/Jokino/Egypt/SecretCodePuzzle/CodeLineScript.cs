@@ -23,6 +23,12 @@ public class CodeLineScript : MonoBehaviour
             CorrectGems.Add(pedestal.CorrectGem);    
         }
     }
+
+    private void OnEnable()
+    {
+        PlacedGems = new List<GemStatus>();
+    }
+
     public void AddGem(GemStatus gem)
     {
         PlacedGems.Add(gem);
@@ -74,7 +80,7 @@ public class CodeLineScript : MonoBehaviour
                 if (OnFinish != null)
                 {
                     // Raise the event by invoking all the subscribers
-                    OnFinish(false);
+                    OnFinish(true);
                 }
 
             }
@@ -85,7 +91,7 @@ public class CodeLineScript : MonoBehaviour
                 if (OnFinish != null)
                 {
                     // Raise the event by invoking all the subscribers
-                    OnFinish(true);
+                    OnFinish(false);
                 }
             }
         }
