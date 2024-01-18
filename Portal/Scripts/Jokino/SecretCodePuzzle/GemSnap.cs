@@ -3,17 +3,29 @@ using UnityEngine;
 
 public class GemSnap : MonoBehaviour
 {
-    // Declase a list with all possible gems
-    public List<string> GemTags = new List<string> {"RedGem","BlackGem", "GreenGem", "BlueGem"};
+    // Declare a list with all possible gems
+    private List<string> GemTags = new List<string> {"OrangeGem","PinkGem", "PurpleGem", "BlueGem"};
     public string listenToTag = "Gem";
     public bool GemIsSnapped = false;
     public string CorrectGem;
     GameObject Line;
     public void Awake()
     {
-      CorrectGem = GemTags[Random.Range(0, 4)];
-        Line = transform.parent.gameObject.transform.parent.gameObject;
-        Debug.Log(transform.parent.name + " "+ " " + CorrectGem);
+        PedestalStatus status = transform.parent.GetComponent<PedestalStatus>();
+        Debug.Log(status.CorrectGem);
+
+        if (status.CorrectGem.Length<2)
+        {
+            CorrectGem = GemTags[Random.Range(0, 4)];
+            Line = transform.parent.gameObject.transform.parent.gameObject;
+            Debug.Log(transform.parent.name + " " + " " + CorrectGem);
+            //status.CorrectGem = CorrectGem;
+        }
+        else
+        {
+           CorrectGem = status.CorrectGem;
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {

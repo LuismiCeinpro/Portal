@@ -6,13 +6,20 @@ public class CodeLineScript : MonoBehaviour
     private List<GemStatus> PlacedGems = new List<GemStatus>();
     public List<GemSnap> Pedestals = new List<GemSnap>();
     public List<string> CorrectGems = new List<string>();
-    private int CodeLength;
+    private int CodeLength = 4;
     private bool IsCodeCorrect;
+
+    public delegate void EventHandler(bool correct);
+
+    // Declare the event of type MyEventHandler
+    public static event EventHandler OnFinish;
+
     private void Start()
     {
-     CodeLength = transform.childCount;
      foreach(GemSnap pedestal in Pedestals)
         {
+            Debug.Log("test");
+            pedestal.gameObject.SetActive(true);
             CorrectGems.Add(pedestal.CorrectGem);    
         }
     }
@@ -64,13 +71,22 @@ public class CodeLineScript : MonoBehaviour
             {
                 // create win win function, yay
                 Debug.Log("CORRECT COMBINATION");
-
+                if (OnFinish != null)
+                {
+                    // Raise the event by invoking all the subscribers
+                    OnFinish(false);
+                }
 
             }
             else
             {
                 // Ohno you lost function, :(
                 Debug.Log("INCORRECT COMBINATION");
+                if (OnFinish != null)
+                {
+                    // Raise the event by invoking all the subscribers
+                    OnFinish(true);
+                }
             }
         }
       
