@@ -38,8 +38,8 @@ public class MainMenuBehaviour : MonoBehaviour
         _background.transform.localPosition = Vector3.zero;
         _currentBackgroundIndex++;
         if (_currentBackgroundIndex >= _backgrounds.Length) _currentBackgroundIndex = 0;
-        _backgroundDirection.x = Random.Range(0, 1) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
-        _backgroundDirection.y = Random.Range(0, 1) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
+        _backgroundDirection.x = Random.Range(0f, 1f) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
+        _backgroundDirection.y = Random.Range(0f, 1f) > 0.5f ? Random.Range(0.5f, 1f) : Random.Range(-1f, -0.5f);
         yield return new WaitForSeconds(5f);
         _background.DOFadeOut(() =>
         {
