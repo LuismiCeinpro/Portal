@@ -20,11 +20,16 @@ public class GemBagScript : BaseInteractable
     }
     protected override void OnActivate()
     {
-        GameObject pr = Instantiate(gemPrefab, PickupTarget.transform.position, Quaternion.identity);
-        PickableItem currentGem = pr.GetComponent<PickableItem>();
-        Rigidbody currentGemRigidbody = pr.GetComponent<Rigidbody>();
-        currentGem.PickupTarget = PickupTarget;
-        currentGem.CurrentObject = currentGemRigidbody;
-        currentGemRigidbody.useGravity = false;
+        if (!GameManager.instance.IsObjectPickedUp)
+        {
+            GameObject pr = Instantiate(gemPrefab, PickupTarget.transform.position, Quaternion.identity);
+            PickableItem currentGem = pr.GetComponent<PickableItem>();
+            Rigidbody currentGemRigidbody = pr.GetComponent<Rigidbody>();
+            currentGem.PickupTarget = PickupTarget;
+            currentGem.CurrentObject = currentGemRigidbody;
+            currentGemRigidbody.useGravity = false;
+            GameManager.instance.IsObjectPickedUp = true;
+        }
+
     }
 }

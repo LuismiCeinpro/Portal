@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     // Propiedad que permite acceder al GameManager
     public static GameManager instance { get; private set; }
     public InteractionType interactionType { get; private set; }
+    //Variable que se asegura de no poder coger objetos cuando ya tienes uno en la mano
+    public bool IsObjectPickedUp= false;
 
     // Inicialización de la clase
     private void Awake()

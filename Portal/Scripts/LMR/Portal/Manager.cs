@@ -18,7 +18,6 @@ namespace Portal
             // Guardamos el origen del portal
             _origin = origin;
         }
-
         // Método para establecer el destino del portal
         public void SetTarget(Target target)
         {

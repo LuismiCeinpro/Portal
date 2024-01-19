@@ -1,4 +1,5 @@
 using Base;
+using Portal;
 using UnityEngine;
 
 public class PickableItem : BaseInteractable
@@ -10,7 +11,7 @@ public class PickableItem : BaseInteractable
     public Rigidbody CurrentObject = null;
     public bool IsPlaced = false;
     private int count;
-
+    
 
     private void Start()
     {
@@ -24,15 +25,17 @@ public class PickableItem : BaseInteractable
         {
             CurrentObject.useGravity = true;
             CurrentObject = null;
+            GameManager.instance.IsObjectPickedUp = false;
         }
-        else if (!CurrentObject)
+        else if (!CurrentObject && !GameManager.instance.IsObjectPickedUp)
         {
+            Debug.Log("TEST");
             Debug.Log("pickup");
             CurrentObject = transform.GetComponent<Rigidbody>();
             CurrentObject.useGravity = false;
+            GameManager.instance.IsObjectPickedUp = true;
             enabled = true;
         }
-
     }
 
     void Update()
@@ -41,17 +44,10 @@ public class PickableItem : BaseInteractable
         {
             if (IsPlaced)
             {
+                GameManager.instance.IsObjectPickedUp = false;
                 CurrentObject = null;
                 return;
             }
-
-        }
-        if (Input.GetKeyDown(KeyCode.E) && CurrentObject)
-        {
-            //CurrentObject.useGravity = true;
-            //CurrentObject = null;
-            //enabled = false;
-            return;
         }
     }
 
