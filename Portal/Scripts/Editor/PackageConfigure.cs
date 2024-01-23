@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEditor;
 
 
-public class PackagePostProcessor : AssetPostprocessor
+public class PackageConfigure
 {
-    private static string[] _tags = { "NewTag" };
-    private static LayerInfo[] _layers = { new LayerInfo() { index = 8, name = "Interactable" } };
+    private static string[] _tags = { "BlueGem","OrangeGem","screen","CinemachineTarget","draggable","Gembag","HexagonTile","PinkGem","PurpleGem" };
+    private static LayerInfo[] _layers = { new LayerInfo() { index = 3, name = "PlacedGem" }, new LayerInfo() { index = 6, name = "Interactable" } };
 
     [MenuItem("Portal/Check for needed tags && layers")]
     private static void CheckTags()

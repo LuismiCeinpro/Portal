@@ -1,0 +1,16 @@
+{
+    "name": "Portal.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:47711fe585ccd1b448de560363a636cb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
