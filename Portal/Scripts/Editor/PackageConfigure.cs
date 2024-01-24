@@ -4,8 +4,8 @@ using UnityEditor;
 
 public class PackageConfigure
 {
-    private static string[] _tags = { "BlueGem","OrangeGem","screen","CinemachineTarget","draggable","Gembag","HexagonTile","PinkGem","PurpleGem" };
-    private static LayerInfo[] _layers = { new LayerInfo() { index = 3, name = "PlacedGem" }, new LayerInfo() { index = 6, name = "Interactable" } };
+    private static string[] _tags = { "BlueGem","OrangeGem","screen","CinemachineTarget","draggable","Gembag","HexagonTile","PinkGem","PurpleGem", "Esfera", "Desactivador", "Negativo", "Base" };
+    private static LayerInfo[] _layers = { new LayerInfo(3, "PlacedGem"), new LayerInfo(6, "Interactable"), new LayerInfo(26, "Terrain"), new LayerInfo(27, "Stencil1"), new LayerInfo(28, "Stencil2"), new LayerInfo(29, "TransparentFX2"), new LayerInfo(30, "BolaDia"), new LayerInfo(31, "BolaNoche") };
 
     [MenuItem("Portal/Check for needed tags && layers")]
     private static void CheckTags()
@@ -69,6 +69,11 @@ public class PackageConfigure
 
     private struct LayerInfo
     {
+        public LayerInfo(int index, string name)
+        {
+            this.index = index;
+            this.name = name;
+        }
         public int index;
         public string name;
     }
