@@ -7,7 +7,7 @@ namespace Base
 {
     // Clase principal para cualquier tipo de objeto con el que el
     // jugador puede interactuar
-    public abstract class BaseInteractable : MonoBehaviour
+    public class BaseInteractable : MonoBehaviour
     {
         // Evento que se lanza cuando el jugador interactúa con
         // el objeto
@@ -24,7 +24,7 @@ namespace Base
             OnActivate();
         }
 
-        // Método abstracto que tendrán que implementar todas las clases
-        protected abstract void OnActivate();
+        // Método que opcionalmente pueden implementar todas las clases
+        protected virtual void OnActivate() { }
     }
 }
