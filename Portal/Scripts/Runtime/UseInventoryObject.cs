@@ -1,4 +1,3 @@
-using Base;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine;
 namespace Gameplay
 {
   
-    public class UseInventoryObject : BaseInteractable
+    public class UseInventoryObject : InteractableObject
     {
         public InventoryHelper helper;
         [SerializeField]
@@ -15,7 +14,7 @@ namespace Gameplay
     protected override void OnActivate()
     {
             
-            helper.OpenInventory(this);
+            helper.RequestObject(this);
 
             isKeyOnInventory = helper.Search(KeyId);
 

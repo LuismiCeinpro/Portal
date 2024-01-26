@@ -23,7 +23,7 @@ public class PlayerInteractableDetector : MonoBehaviour
         {
             // Si el rayo encuentra un objeto dentro de la capa de físicas
             // Intentaremos recuperarlo y activarlo
-            Base.BaseInteractable interactableObject;
+            Gameplay.InteractableObject interactableObject;
             if (hitInfo.collider.TryGetComponent(out interactableObject))
                 interactableObject.Activate();
         }

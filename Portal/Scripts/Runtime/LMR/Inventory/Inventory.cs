@@ -15,6 +15,8 @@ namespace Gameplay
         [SerializeField] private InventoryCell _itemPrefab;
         [SerializeField] private TextMeshProUGUI _itemDescription;
         private SortedList<string, InventoryCell> _items;
+        private Action<InventoryItemScriptableObject, bool> _onItemSelected;
+        private InteractableObject _currentObject;
 
         private bool _isInventoryVisible = false;
 
@@ -29,27 +31,45 @@ namespace Gameplay
             instance.SetItem(item);
             instance.onItemEnter += OnItemEnter;
             instance.onItemExit += OnItemExit;
-            instance.onItemSelect += OnItemSelect;
+            instance.onItemSelect += OnItemSelected;
             _items.Add(item.id, instance);
         }
 
 
         public bool OnItemCheck(string id)
         {
-            bool IsOnInventory = false;
+            bool isOnInventory = false;
             foreach (string key in _items.Keys)
             {
                 if (id == key)
                 {
-                    IsOnInventory = true;
+                    isOnInventory = true;
                 }
             }
-            return IsOnInventory;
+            return isOnInventory;
         }
 
-        private void OnItemSelect(InventoryItemScriptableObject item)
+        public bool OnItemCheck(string[] ids)
         {
+            foreach (string id in ids)
+            {
+                if (_items.Keys.IndexOf(id) != -1) return true;
+            }
+            return false;
+        }
 
+        private void OnItemSelected(InventoryItemScriptableObject item)
+        {
+            foreach (InventoryItemScriptableObject request in _currentObject.itemsToRequest)
+            {
+                if (request.id == item.id)
+                {
+                    _onItemSelected.Invoke(item, true);
+                    if (item.removeOnUse) Remove(item.id);
+                    return;
+                }
+            }
+            _onItemSelected.Invoke(item, false);
         }
 
         private void OnItemExit(InventoryItemScriptableObject item)
@@ -95,14 +115,15 @@ namespace Gameplay
             }
         }
 
-        public void ToggleInventory(UseInventoryObject origin)
+        public void ToggleInventory(InteractableObject currentObject, Action<InventoryItemScriptableObject, bool> onItemSelected)
         {
             if (_items.Count == 0) _itemDescription.text = "No llevas ningún objeto contigo.";
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _containerCanvasGroup.DOFadeIn();
             _isInventoryVisible = !_isInventoryVisible;
-
+            _onItemSelected = onItemSelected;
+            _currentObject = currentObject;
         }
 
         private void Update()

@@ -1,8 +1,8 @@
-using Base;
+using Gameplay;
 using Portal;
 using UnityEngine;
 
-public class PickableItem : BaseInteractable
+public class PickableItem : InteractableObject
 {
     // Variables referentes al controlador del jugador
     [Header("Player settings")]

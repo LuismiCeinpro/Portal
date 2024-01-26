@@ -1,5 +1,5 @@
 // Importamos nuestro nombre de espacio para clases base
-using Base;
+using Gameplay;
 using System.Collections;
 using UnityEngine;
 // Necesario para saber cuándo una nueva escena se ha cargado
@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 namespace Portal
 {
     // Clase que indica el origen de un portal
-    public class Origin : BaseInteractable
+    public class Origin : InteractableObject
     {
         // Variables referentes al controlador del jugador
         [Header("Player settings")]

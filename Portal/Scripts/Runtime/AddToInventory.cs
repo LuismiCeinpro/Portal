@@ -1,12 +1,11 @@
 using System.Collections;
-using Base;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace Gameplay
 { 
-public class AddToInventory : BaseInteractable
+public class AddToInventory : InteractableObject
 {
         public InventoryHelper helper;
         public InventoryItemScriptableObject Key;

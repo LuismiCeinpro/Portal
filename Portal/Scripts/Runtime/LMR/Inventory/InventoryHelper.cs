@@ -25,10 +25,16 @@ namespace Gameplay
             bool isOnInventory = GameManager.instance.player.Inventory.OnItemCheck(id);
             return isOnInventory;
         }
-        public void OpenInventory(UseInventoryObject origin)
+
+        public void RequestObject(InteractableObject itemToRequest)
         {
-            GameManager.instance.player.Inventory.ToggleInventory(origin);
+            GameManager.instance.player.Inventory.ToggleInventory(itemToRequest, (InventoryItemScriptableObject item, bool isCorrect) => OnRequestObjectClosed(itemToRequest, isCorrect));
         }
 
+        private void OnRequestObjectClosed(InteractableObject objectSelected, bool isCorrect)
+        {
+            if (isCorrect) objectSelected.OnCorrectItemSelected();
+            else objectSelected.OnIncorrectItemSelected();
+        }
     }
 }
