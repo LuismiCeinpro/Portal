@@ -13,14 +13,9 @@ public class PickableItem : InteractableObject
     private int count;
     
 
-    private void Start()
-    {
-        PickupTarget = GameObject.Find("PickupPoint").transform;
-
-    }
     protected override void OnActivate()
     {
-
+        if (!PickupTarget) PickupTarget = GameObject.Find("PickupPoint").transform;
         if (CurrentObject)
         {
             CurrentObject.useGravity = true;
