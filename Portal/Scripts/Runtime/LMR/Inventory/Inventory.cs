@@ -34,8 +34,6 @@ namespace Gameplay
             instance.onItemSelect += OnItemSelected;
             _items.Add(item.id, instance);
         }
-
-
         public bool OnItemCheck(string id)
         {
             bool isOnInventory = false;
@@ -66,10 +64,12 @@ namespace Gameplay
                 {
                     _onItemSelected.Invoke(item, true);
                     if (item.removeOnUse) Remove(item.id);
+                    ToggleInventory();
                     return;
                 }
             }
             _onItemSelected.Invoke(item, false);
+            ToggleInventory();
         }
 
         private void OnItemExit(InventoryItemScriptableObject item)
