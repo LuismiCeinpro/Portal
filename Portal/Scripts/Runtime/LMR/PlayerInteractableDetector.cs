@@ -13,7 +13,7 @@ public class PlayerInteractableDetector : MonoBehaviour
 
     private void Start()
     {
-        if (_raycastOrigin != null) _raycastOrigin = Camera.main.transform;
+        if (_raycastOrigin == null) _raycastOrigin = Camera.main.transform;
     }
 
     private void Update()
