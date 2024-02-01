@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
+  MoveSpeed: 3
   SprintSpeed: 6
   RotationSpeed: 1
   SpeedChangeRate: 10
@@ -400,8 +400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 5420857361349278248}
   _footTransform: {fileID: 3486552194060914104}
-  _walkFootstepInterval: 0.5
-  _runFootstepInterval: 0.25
+  _walkFootstepInterval: 0.6
+  _runFootstepInterval: 0.4
   _footsteps:
   - {fileID: 11400000, guid: 260e38679f547934b8384609475b91a4, type: 2}
   - {fileID: 11400000, guid: 03201c2c146434f4fa89853ed6568f26, type: 2}

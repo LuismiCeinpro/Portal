@@ -23,7 +23,11 @@ public class PlayerFootstepDetector : MonoBehaviour
     private void Update()
     {
         float newFootstepInterval = _controller.sprint ? _runFootstepInterval : _walkFootstepInterval;
-        if (newFootstepInterval != _footstepInterval || _controller.move == Vector2.zero) _footstepElapsedTime = 0;
+        if (newFootstepInterval != _footstepInterval || _controller.move == Vector2.zero)
+        {
+            _footstepElapsedTime = 0;
+            _footstepInterval = newFootstepInterval;
+        }
         if (_controller.move != Vector2.zero)
         {
             _footstepElapsedTime += Time.deltaTime;
