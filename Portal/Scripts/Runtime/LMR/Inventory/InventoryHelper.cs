@@ -28,13 +28,13 @@ namespace Gameplay
 
         public void RequestObject(InteractableObject itemToRequest)
         {
-            GameManager.instance.player.Inventory.ToggleInventory(itemToRequest, (InventoryItemScriptableObject item, bool isCorrect) => OnRequestObjectClosed(itemToRequest, isCorrect));
+            GameManager.instance.player.Inventory.ToggleInventory(itemToRequest, (InventoryItemScriptableObject item, bool isCorrect) => OnRequestObjectClosed(itemToRequest, item, isCorrect));
         }
 
-        private void OnRequestObjectClosed(InteractableObject objectSelected, bool isCorrect)
+        private void OnRequestObjectClosed(InteractableObject objectSelected, InventoryItemScriptableObject item, bool isCorrect)
         {
-            if (isCorrect) objectSelected.OnCorrectItemSelected();
-            else objectSelected.OnIncorrectItemSelected();
+            if (isCorrect) objectSelected.OnCorrectItemSelected(item);
+            else objectSelected.OnIncorrectItemSelected(item);
         }
     }
 }

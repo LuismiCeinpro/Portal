@@ -17,9 +17,9 @@ namespace Gameplay
         // el objeto
         [SerializeField] private UnityEvent<InteractableObject> _onActivate;
         [Space]
-        [SerializeField] private UnityEvent<InteractableObject> _onCorrectItemSelected;
+        [SerializeField] private UnityEvent<InventoryItemScriptableObject> _onCorrectItemSelected;
         [Space]
-        [SerializeField] private UnityEvent<InteractableObject> _onIncorrectItemSelected;
+        [SerializeField] private UnityEvent<InventoryItemScriptableObject> _onIncorrectItemSelected;
 
         public List<InventoryItemScriptableObject> itemsToRequest { get { return _itemsToRequest; } }
 
@@ -37,14 +37,15 @@ namespace Gameplay
         // Método que opcionalmente pueden implementar todas las clases
         protected virtual void OnActivate() { }
 
-        public virtual void OnCorrectItemSelected() 
+        public virtual void OnCorrectItemSelected(InventoryItemScriptableObject selectedItem) 
         { 
-            _onCorrectItemSelected.Invoke(this);
+            if (selectedItem.removeFromRequestOnUse) _itemsToRequest.Remove(selectedItem);
+            _onCorrectItemSelected.Invoke(selectedItem);
         }
 
-        public virtual void OnIncorrectItemSelected() 
+        public virtual void OnIncorrectItemSelected(InventoryItemScriptableObject selectedItem)
         { 
-            _onIncorrectItemSelected.Invoke(this);
+            _onIncorrectItemSelected.Invoke(selectedItem);
         }
     }
 }

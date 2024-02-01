@@ -63,7 +63,7 @@ namespace Gameplay
                 if (request.id == item.id)
                 {
                     _onItemSelected.Invoke(item, true);
-                    if (item.removeOnUse) Remove(item.id);
+                    if (item.removeFromInventoryOnUse) Remove(item.id);
                     ToggleInventory();
                     return;
                 }
