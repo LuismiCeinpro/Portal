@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499d4038fd836364aa64a269973d1bd7, type: 3}
   m_Name: player_footsteps_rock
   m_EditorClassIdentifier: 
-  _tag: Footsteps Grass
+  _tag: Footsteps Rock
   _walkFootsteps:
   - {fileID: 8300000, guid: 1f0199a4c6005ec4abbb302f71bc036d, type: 3}
   - {fileID: 8300000, guid: 53e2adf2ac488ef46bb2b4074de9e363, type: 3}
