@@ -398,8 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719b7deed8fb18148aace6821f368ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 8616685848737228382}
-  _footTransform: {fileID: 0}
+  _controller: {fileID: 5420857361349278248}
+  _footTransform: {fileID: 3486552194060914104}
   _walkFootstepInterval: 0.5
   _runFootstepInterval: 0.25
   _footsteps:
