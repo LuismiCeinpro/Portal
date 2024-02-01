@@ -38,6 +38,7 @@ public class PlayerFootstepDetector : MonoBehaviour
                         if (footsteps.tag == tag)
                         {
                             PlayRandomAudio(footsteps, _controller.sprint);
+                            return;
                         }
                     }
                 }
@@ -50,5 +51,6 @@ public class PlayerFootstepDetector : MonoBehaviour
         int index = isSprint ? Random.Range(0, footsteps.runFootsteps.Length) : Random.Range(0, footsteps.walkFootsteps.Length);
         AudioClip clip = isSprint ? footsteps.runFootsteps[index] : footsteps.walkFootsteps[index];
         AudioSource.PlayClipAtPoint(clip, _footTransform.position);
+        _footstepElapsedTime = 0;
     }
 }
