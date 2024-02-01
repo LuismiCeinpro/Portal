@@ -11,6 +11,11 @@ public class PlayerInteractableDetector : MonoBehaviour
     // Variable que indica la distancia a la que se buscará
     [SerializeField] private float _raycastDistance;
 
+    private void Start()
+    {
+        if (_raycastOrigin != null) _raycastOrigin = Camera.main.transform;
+    }
+
     private void Update()
     {
         // Variable que almacenará el resultado del rayo
