@@ -4,7 +4,7 @@ using UnityEditor;
 
 public class PackageConfigure
 {
-    private static string[] _tags = { "BlueGem","OrangeGem","screen","CinemachineTarget","draggable","Gembag","HexagonTile","PinkGem","PurpleGem", "Esfera", "Desactivador", "Negativo", "Base" };
+    private static string[] _tags = { "BlueGem","OrangeGem","screen","CinemachineTarget","draggable","Gembag","HexagonTile","PinkGem","PurpleGem", "Esfera", "Desactivador", "Negativo", "Base", "Footsteps Grass", "Footsteps Gravel", "Footsteps Metal", "Footsteps Rock", "Footsteps Sand", "Footsteps Snow", "Footsteps Tile", "Footsteps Water", "Footsteps Wood" };
     private static LayerInfo[] _layers = { new LayerInfo(3, "PlacedGem"), new LayerInfo(6, "Interactable"), new LayerInfo(26, "Terrain"), new LayerInfo(27, "Stencil1"), new LayerInfo(28, "Stencil2"), new LayerInfo(29, "TransparentFX2"), new LayerInfo(30, "BolaDia"), new LayerInfo(31, "BolaNoche") };
 
     [MenuItem("Portal/Check for needed tags && layers")]
