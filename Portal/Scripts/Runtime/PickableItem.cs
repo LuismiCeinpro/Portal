@@ -1,6 +1,7 @@
 using Gameplay;
 using Portal;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickableItem : InteractableObject
 {
@@ -8,29 +9,34 @@ public class PickableItem : InteractableObject
     [Header("Player settings")]
     [SerializeField] public Transform PickupTarget;
     [Space]
+    [SerializeField] private UnityEvent<PickableItem> _onRelease;
+    [Space]
+    [SerializeField] private UnityEvent<PickableItem> _onTake;
     public Rigidbody CurrentObject = null;
     public bool IsPlaced = false;
-    private int count;
-    
 
     protected override void OnActivate()
     {
         if (!PickupTarget) PickupTarget = GameObject.Find("PickupPoint").transform;
-        if (CurrentObject)
-        {
-            CurrentObject.useGravity = true;
-            CurrentObject = null;
-            GameManager.instance.IsObjectPickedUp = false;
-        }
-        else if (!CurrentObject && !GameManager.instance.IsObjectPickedUp)
-        {
-            Debug.Log("TEST");
-            Debug.Log("pickup");
-            CurrentObject = transform.GetComponent<Rigidbody>();
-            CurrentObject.useGravity = false;
-            GameManager.instance.IsObjectPickedUp = true;
-            enabled = true;
-        }
+        if (CurrentObject) Release(true);
+        else if (!CurrentObject && !GameManager.instance.IsObjectPickedUp) Take(true);
+    }
+
+    public void Release(bool fireOnRealeaseEvent)
+    {
+        CurrentObject.useGravity = true;
+        CurrentObject = null;
+        GameManager.instance.IsObjectPickedUp = false;
+        _onRelease?.Invoke(this);
+    }
+
+    public void Take(bool fireOnTakeEvent)
+    {
+        CurrentObject = transform.GetComponent<Rigidbody>();
+        CurrentObject.useGravity = false;
+        GameManager.instance.IsObjectPickedUp = true;
+        enabled = true;
+        _onTake?.Invoke(this);
     }
 
     void Update()
