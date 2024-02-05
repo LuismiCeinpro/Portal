@@ -13,6 +13,8 @@ public class PlayerInteractableDetector : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (_raycastOrigin == null) _raycastOrigin = Camera.main.transform;
     }
 

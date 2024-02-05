@@ -1,3 +1,4 @@
+using Codice.CM.Common.Tree;
 using Gameplay;
 using StarterAssets;
 using System.Collections;
@@ -34,7 +35,7 @@ public class PlayerFootstepDetector : MonoBehaviour
             if (_footstepElapsedTime >= _footstepInterval)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(_footTransform.position, Vector3.down, out hit, 0.1f))
+                if (Physics.Raycast(_footTransform.position, Vector3.down, out hit, 0.2f))
                 {
                     string tag = hit.collider.tag;
                     foreach (PlayerFootstepsScriptableObject footsteps in _footsteps)
@@ -43,6 +44,34 @@ public class PlayerFootstepDetector : MonoBehaviour
                         {
                             PlayRandomAudio(footsteps, _controller.sprint);
                             return;
+                        }
+                    }
+                    Terrain terrain = null;
+                    if (hit.collider.TryGetComponent(out terrain))
+                    {
+                        float normalizedX = (transform.position.x - terrain.transform.position.x) / terrain.terrainData.size.x;
+                        float normalizedZ = (transform.position.z - terrain.transform.position.z) / terrain.terrainData.size.z;
+                        float[,,] splatmapData = terrain.terrainData.GetAlphamaps(Mathf.FloorToInt(normalizedX * terrain.terrainData.alphamapWidth), Mathf.FloorToInt(normalizedZ * terrain.terrainData.alphamapHeight), 1, 1);
+                        string layerName = "";
+                        float maxMix = 0;
+                        for (int i = 0; i < terrain.terrainData.alphamapLayers; i++)
+                        {
+                            if (splatmapData[0, 0, i] > maxMix)
+                            {
+                                layerName = terrain.terrainData.terrainLayers[i].name;
+                                maxMix = splatmapData[0, 0, i];
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(layerName))
+                        {
+                            foreach (PlayerFootstepsScriptableObject footsteps in _footsteps)
+                            {
+                                if (footsteps.terrainLayer == layerName)
+                                {
+                                    PlayRandomAudio(footsteps, _controller.sprint);
+                                    return;
+                                }
+                            }
                         }
                     }
                 }

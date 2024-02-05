@@ -101,7 +101,7 @@ namespace Gameplay
             if (_isInventoryVisible)
             {
                 Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
                 _containerCanvasGroup.DOFadeOut();
                 _isInventoryVisible = !_isInventoryVisible;
             }

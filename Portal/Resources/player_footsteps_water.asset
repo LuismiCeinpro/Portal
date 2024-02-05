@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: player_footsteps_water
   m_EditorClassIdentifier: 
   _tag: Footsteps Water
+  _terrainLayer: Ground_01
   _walkFootsteps:
   - {fileID: 8300000, guid: 518cdd508d673124da33c3a5cdd93f05, type: 3}
   - {fileID: 8300000, guid: 0fb11b2e4f3de6746ba2c3f528d9b01a, type: 3}
