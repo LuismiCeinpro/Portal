@@ -28,6 +28,7 @@ namespace Gameplay
 
         public void RequestObject(InteractableObject itemToRequest)
         {
+            if (itemToRequest.itemsToRequest.Count == 0) return;
             GameManager.instance.player.Inventory.ToggleInventory(itemToRequest, (InventoryItemScriptableObject item, bool isCorrect) => OnRequestObjectClosed(itemToRequest, item, isCorrect));
         }
 
