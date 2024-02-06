@@ -7,14 +7,14 @@ using UnityEditor;
 public class PlayerFootstepsEditor : Editor
 {
     private SerializedProperty _tagProperty;
-    private SerializedProperty _terrainLayerProperty;
+    private SerializedProperty _terrainLayersProperty;
     private SerializedProperty _walkFootstepsProperty;
     private SerializedProperty _runFootstepsProperty;
 
     private void OnEnable()
     {
         _tagProperty = serializedObject.FindProperty("_tag");
-        _terrainLayerProperty = serializedObject.FindProperty("_terrainLayer");
+        _terrainLayersProperty = serializedObject.FindProperty("_terrainLayers");
         _walkFootstepsProperty = serializedObject.FindProperty("_walkFootsteps");
         _runFootstepsProperty = serializedObject.FindProperty("_runFootsteps");
     }
@@ -27,7 +27,7 @@ public class PlayerFootstepsEditor : Editor
         if (selectedIndex < 0) selectedIndex = 0;
         selectedIndex = EditorGUILayout.Popup("Footsteps tag", selectedIndex, tags);
         _tagProperty.stringValue = tags[selectedIndex];
-        EditorGUILayout.PropertyField(_terrainLayerProperty);
+        EditorGUILayout.PropertyField(_terrainLayersProperty);
         EditorGUILayout.PropertyField(_walkFootstepsProperty);
         EditorGUILayout.PropertyField(_runFootstepsProperty);
         serializedObject.ApplyModifiedProperties();

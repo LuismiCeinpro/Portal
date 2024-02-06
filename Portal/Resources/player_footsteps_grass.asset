@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: player_footsteps_grass
   m_EditorClassIdentifier: 
   _tag: Footsteps Grass
+  _terrainLayers:
+  - Hierba
   _walkFootsteps:
   - {fileID: 8300000, guid: 551d550ab98e3cc4bb7793e752fe8628, type: 3}
   - {fileID: 8300000, guid: 18e761ff5ef14fd4588d9283fcc9b829, type: 3}

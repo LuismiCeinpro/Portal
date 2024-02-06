@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: player_footsteps_gravel
   m_EditorClassIdentifier: 
   _tag: Footsteps Gravel
+  _terrainLayers:
+  - Grava
+  - Pavimento
   _walkFootsteps:
   - {fileID: 8300000, guid: 5461cae585b64f64089805f0d313bc84, type: 3}
   - {fileID: 8300000, guid: 2b3fc7e56f2686b48b9445e48c7db2c9, type: 3}

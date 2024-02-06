@@ -3,6 +3,7 @@ using Gameplay;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerFootstepDetector : MonoBehaviour
@@ -66,7 +67,7 @@ public class PlayerFootstepDetector : MonoBehaviour
                         {
                             foreach (PlayerFootstepsScriptableObject footsteps in _footsteps)
                             {
-                                if (footsteps.terrainLayer == layerName)
+                                if (footsteps.terrainLayers.Contains(layerName, System.StringComparer.InvariantCultureIgnoreCase))
                                 {
                                     PlayRandomAudio(footsteps, _controller.sprint);
                                     return;

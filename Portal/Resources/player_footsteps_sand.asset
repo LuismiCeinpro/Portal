@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: player_footsteps_sand
   m_EditorClassIdentifier: 
   _tag: Footsteps Sand
+  _terrainLayers:
+  - Arena
   _walkFootsteps:
   - {fileID: 8300000, guid: 557e96b16076cb84285c90941906b44c, type: 3}
   - {fileID: 8300000, guid: 93b5a4dc803c25c48a325a38b5617c33, type: 3}
