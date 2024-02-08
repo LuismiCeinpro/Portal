@@ -11,11 +11,11 @@ namespace Gameplay
     {
         [SerializeField] private Image _item;
         [SerializeField] private Image _hoverImage; 
-        public delegate void OnPointerItemDelegate(InventoryItemScriptableObject item);
+        public delegate void OnPointerItemDelegate(InventoryItemScriptableObject item, InventoryCell cell);
         public event OnPointerItemDelegate onItemEnter;
         public event OnPointerItemDelegate onItemExit;
         public event OnPointerItemDelegate onItemSelect;
-        public InventoryItemScriptableObject attachedItem { get; private set; } 
+        public InventoryItemScriptableObject attachedItem { get; private set; }
 
         public void SetItem(InventoryItemScriptableObject item)
         {
@@ -31,22 +31,30 @@ namespace Gameplay
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            
+            onItemEnter.Invoke(attachedItem, this);
+        }
+
+        public void Hover()
+        {
             _hoverImage.transform.DOScaleIn();
             _item.transform.DOScale(1.5f);
-            onItemEnter.Invoke(attachedItem);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            onItemExit.Invoke(attachedItem, this);
+        }
+
+        public void Unselect()
+        {
             _hoverImage.transform.DOScaleOut();
             _item.transform.DOScale(1f);
-            onItemExit.Invoke(attachedItem);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            onItemSelect.Invoke(attachedItem);
-            OnPointerExit(eventData);
+            onItemSelect.Invoke(attachedItem, this);
         }
     }
 }

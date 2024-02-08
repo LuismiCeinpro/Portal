@@ -9,7 +9,6 @@ namespace Gameplay
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private InventoryItemScriptableObject testItem;
         [SerializeField] private RectTransform _containerTransform;
         [SerializeField] private CanvasGroup _containerCanvasGroup;
         [SerializeField] private InventoryCell _itemPrefab;
@@ -17,6 +16,7 @@ namespace Gameplay
         private SortedList<string, InventoryCell> _items;
         private Action<InventoryItemScriptableObject, bool> _onItemSelected;
         private InteractableObject _currentObject;
+        private InventoryCell _currentHoveredItem;
 
         private bool _isInventoryVisible = false;
 
@@ -56,14 +56,19 @@ namespace Gameplay
             return false;
         }
 
-        private void OnItemSelected(InventoryItemScriptableObject item)
+        private void OnItemSelected(InventoryItemScriptableObject item, InventoryCell cell)
         {
+            if (_currentObject == null) return;
             foreach (InventoryItemScriptableObject request in _currentObject.itemsToRequest)
             {
                 if (request.id == item.id)
                 {
                     _onItemSelected.Invoke(item, true);
-                    if (item.removeFromInventoryOnUse) Remove(item.id);
+                    if (item.removeFromInventoryOnUse)
+                    {
+                        cell.onItemExit -= OnItemExit;
+                        Remove(item.id);
+                    }
                     ToggleInventory();
                     return;
                 }
@@ -72,14 +77,18 @@ namespace Gameplay
             ToggleInventory();
         }
 
-        private void OnItemExit(InventoryItemScriptableObject item)
+        private void OnItemExit(InventoryItemScriptableObject item, InventoryCell cell)
         {
+            cell.Unselect();
             _itemDescription.text = string.Empty;
+            _currentHoveredItem = null;
         }
 
-        private void OnItemEnter(InventoryItemScriptableObject item)
+        private void OnItemEnter(InventoryItemScriptableObject item, InventoryCell cell)
         {
+            cell.Hover();
             _itemDescription.text = string.Format("<b>{0}</b>: {1}", item.displayname, item.description);
+            _currentHoveredItem = cell;
         }
 
         public void Remove(InventoryItemScriptableObject item)
@@ -102,8 +111,9 @@ namespace Gameplay
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                _containerCanvasGroup.DOFadeOut();
+                _containerCanvasGroup.DOFadeOut(() => { if (_currentHoveredItem) _currentHoveredItem.Unselect(); });
                 _isInventoryVisible = !_isInventoryVisible;
+                _currentObject = null;
             }
             else if (!_isInventoryVisible)
             {
