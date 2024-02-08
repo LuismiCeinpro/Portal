@@ -63,7 +63,8 @@ public class WorldUICanvas : MonoBehaviour
                 if (result.gameObject.name.ToLower() != "screen"&&result.gameObject.name.ToLower() !="cursor")
                 {
                     // Update the position of the cursor to match the hit position
-                    
+                    Button button = null;
+                    if (result.gameObject.TryGetComponent<Button>(out button)) button.onClick.Invoke();
                     Debug.Log("Hit " + result.gameObject.name);
                     int c = 1;
                     if (result.gameObject.CompareTag("HexagonTile"))
