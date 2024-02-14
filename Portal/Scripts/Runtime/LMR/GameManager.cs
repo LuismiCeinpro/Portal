@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     public enum InteractionType
     {
-        Outline,
         Crosshair,
+        Outline,
         Both,
         None
     }
