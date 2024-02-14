@@ -14,6 +14,7 @@ public class MainMenuBehaviour : MonoBehaviour
     [Header("Main menu backgrounds")]
     [SerializeField] private CanvasGroup _background;
     [SerializeField] private Image _backgroundImage;
+    [SerializeField] private Image _creditsImage;
     [SerializeField] private Sprite[] _backgrounds;
     private int _currentBackgroundIndex = 0;
     private Vector3 _backgroundDirection;
@@ -33,6 +34,11 @@ public class MainMenuBehaviour : MonoBehaviour
         });
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
     private IEnumerator SelectBackground()
     {
         _background.transform.localPosition = Vector3.zero;
@@ -47,6 +53,14 @@ public class MainMenuBehaviour : MonoBehaviour
             StartCoroutine(SelectBackground());
             _background.DOFadeIn();
         });
+    }
+    public void showCredits()
+    {
+        _background.DOFadeOut(() =>
+        {
+           
+        });
+        StopCoroutine(SelectBackground());
     }
 
     public void SelectInteractionType(int type)
