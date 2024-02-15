@@ -11,7 +11,7 @@ public class GridSlot : MonoBehaviour, IDropHandler
     public int colSize;
     public bool IsOnBorder = false;
     public List<int> adjacentTileChildPositions = new List<int>();
-    public List<GameObject> adjacentTiles = new List<GameObject>();
+    public List<GridSlot> adjacentTiles = new List<GridSlot>();
     public GameObject HexGrid;
     public void OnDrop(PointerEventData eventData)
     {
@@ -79,7 +79,7 @@ public class GridSlot : MonoBehaviour, IDropHandler
         {
             if (position > 0 && position < rowSize * colSize - 1&& (HexGrid.transform.GetChild(position).transform.GetComponent<GridSlot>().IsOnBorder==false))
             {
-                adjacentTiles.Add(HexGrid.transform.GetChild(position).transform.gameObject);
+                adjacentTiles.Add(HexGrid.transform.GetChild(position).transform.GetComponent<GridSlot>());
             }
         }
     }
