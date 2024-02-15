@@ -10,7 +10,7 @@ public class WorldUICanvas : MonoBehaviour
     private GraphicRaycaster _raycaster;
     private PointerEventData _pointerEventData;
     private EventSystem _eventSystem;
-    private RectTransform _cursor;
+    [SerializeField] private RectTransform _cursor;
 
     void Start()
     {
