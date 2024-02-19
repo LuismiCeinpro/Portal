@@ -25,13 +25,20 @@ public class PlayerInteractableDetector : MonoBehaviour
     {
         // Variable que almacenará el resultado del rayo
         RaycastHit hitInfo;
-        if (Physics.SphereCast(_raycastOrigin.position, 0.2f, _raycastOrigin.forward, out hitInfo, _raycastDistance, _interactionLayer))
+        if (Physics.SphereCast(_raycastOrigin.position, 0.2f, _raycastOrigin.forward, out hitInfo, _raycastDistance))
         {
-            _crosshairAnimator.SetBool("Focus", true);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (hitInfo.collider.gameObject.layer == _interactionLayer)
             {
-                Gameplay.InteractableObject interactableObject;
-                if (hitInfo.collider.TryGetComponent(out interactableObject)) interactableObject.Activate();
+                _crosshairAnimator.SetBool("Focus", true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Gameplay.InteractableObject interactableObject;
+                    if (hitInfo.collider.TryGetComponent(out interactableObject)) interactableObject.Activate();
+                }
+            }
+            else
+            {
+                _crosshairAnimator.SetBool("Focus", false);
             }
         }
         else
