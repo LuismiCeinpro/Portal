@@ -17,7 +17,7 @@ public class PlayerInteractableDetector : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         if (_raycastOrigin == null) _raycastOrigin = Camera.main.transform;
-        _crosshairAnimator = transform.parent.GetComponentInChildren<Animator>();
+        if (_crosshairAnimator == null) _crosshairAnimator = transform.parent.GetComponentInChildren<Animator>();
         _crosshairAnimator.gameObject.SetActive(GameManager.instance.interactionType == GameManager.InteractionType.Crosshair);
     }
 
