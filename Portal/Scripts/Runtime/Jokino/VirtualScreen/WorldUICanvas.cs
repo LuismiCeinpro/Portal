@@ -47,7 +47,53 @@ public class WorldUICanvas : MonoBehaviour
             cursorPos.z = 0;
             _cursor.localPosition = cursorPos;
         }
+        // Set up the new Pointer Event
+        _pointerEventData = new PointerEventData(_eventSystem);
+        // Set the Pointer Event Position to that of the mouse position
+        _pointerEventData.position = Input.mousePosition;
 
+        // Create a list of Raycast Results
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        // Raycast using the Graphics Raycaster and mouse click position
+        _raycaster.Raycast(_pointerEventData, results);
+
+        // For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+        foreach (RaycastResult result in results)
+        {
+            if (_selectedGameObject == null)
+            {
+                EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
+                if (trigger)
+                {
+                    foreach (EventTrigger.Entry entry in trigger.triggers)
+                    {
+                        if (entry.eventID == EventTriggerType.PointerEnter)
+                        {
+                            entry.callback.Invoke(new PointerEventData(_eventSystem));
+                            _selectedGameObject = result.gameObject;
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
+                if (trigger)
+                {
+                    foreach (EventTrigger.Entry entry in trigger.triggers)
+                    {
+                        if (entry.eventID == EventTriggerType.PointerExit)
+                        {
+                            entry.callback.Invoke(new PointerEventData(_eventSystem));
+                            _selectedGameObject = null;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         // Check for mouse click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -57,7 +103,7 @@ public class WorldUICanvas : MonoBehaviour
             _pointerEventData.position = Input.mousePosition;
 
             // Create a list of Raycast Results
-            List<RaycastResult> results = new List<RaycastResult>();
+            results = new List<RaycastResult>();
 
             // Raycast using the Graphics Raycaster and mouse click position
             _raycaster.Raycast(_pointerEventData, results);
@@ -67,23 +113,6 @@ public class WorldUICanvas : MonoBehaviour
             {
                 if (result.gameObject.name.ToLower() != "screen"&&result.gameObject.name.ToLower() !="cursor")
                 {
-                    if (_selectedGameObject == null)
-                    {
-                        EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
-                        if (trigger)
-                        {
-                            foreach (EventTrigger.Entry entry in trigger.triggers)
-                            {
-                                if (entry.eventID == EventTriggerType.PointerEnter)
-                                {
-                                    entry.callback.Invoke(new PointerEventData(_eventSystem));
-                                    _selectedGameObject = result.gameObject;
-                                    return;
-                                }
-                            }
-                        }
-                    }
-
                     // Update the position of the cursor to match the hit position
                     Button button = null;
                     if (result.gameObject.TryGetComponent(out button)) button.onClick.Invoke();
@@ -113,23 +142,6 @@ public class WorldUICanvas : MonoBehaviour
                     }
                         
                 }
-                else
-                {
-                    EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
-                    if (trigger)
-                    {
-                        foreach (EventTrigger.Entry entry in trigger.triggers)
-                        {
-                            if (entry.eventID == EventTriggerType.PointerExit)
-                            {
-                                entry.callback.Invoke(new PointerEventData(_eventSystem));
-                                _selectedGameObject = null;
-                                return;
-                            }
-                        }
-                    }
-                }
-
             }
         }
     }
