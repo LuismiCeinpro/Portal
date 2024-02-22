@@ -72,10 +72,18 @@ public class WorldUICanvas : MonoBehaviour
                         EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
                         if (trigger)
                         {
-                            trigger.OnPointerEnter(new PointerEventData(_eventSystem));
-                            _selectedGameObject = result.gameObject;
+                            foreach (EventTrigger.Entry entry in trigger.triggers)
+                            {
+                                if (entry.eventID == EventTriggerType.PointerEnter)
+                                {
+                                    entry.callback.Invoke(new PointerEventData(_eventSystem));
+                                    _selectedGameObject = result.gameObject;
+                                    return;
+                                }
+                            }
                         }
                     }
+
                     // Update the position of the cursor to match the hit position
                     Button button = null;
                     if (result.gameObject.TryGetComponent(out button)) button.onClick.Invoke();
@@ -107,8 +115,19 @@ public class WorldUICanvas : MonoBehaviour
                 }
                 else
                 {
-                    EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
-                    trigger.OnPointerExit(new PointerEventData(_eventSystem));
+                    EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
+                    if (trigger)
+                    {
+                        foreach (EventTrigger.Entry entry in trigger.triggers)
+                        {
+                            if (entry.eventID == EventTriggerType.PointerExit)
+                            {
+                                entry.callback.Invoke(new PointerEventData(_eventSystem));
+                                _selectedGameObject = null;
+                                return;
+                            }
+                        }
+                    }
                 }
 
             }
