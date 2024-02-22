@@ -58,6 +58,23 @@ public class WorldUICanvas : MonoBehaviour
         // Raycast using the Graphics Raycaster and mouse click position
         _raycaster.Raycast(_pointerEventData, results);
 
+        if (results.Count == 0 && _selectedGameObject)
+        {
+            EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
+            if (trigger)
+            {
+                foreach (EventTrigger.Entry entry in trigger.triggers)
+                {
+                    if (entry.eventID == EventTriggerType.PointerExit)
+                    {
+                        entry.callback.Invoke(new PointerEventData(_eventSystem));
+                        _selectedGameObject = null;
+                        return;
+                    }
+                }
+            }
+        }
+
         // For every result returned, output the name of the GameObject on the Canvas hit by the Ray
         foreach (RaycastResult result in results)
         {
@@ -72,22 +89,6 @@ public class WorldUICanvas : MonoBehaviour
                         {
                             entry.callback.Invoke(new PointerEventData(_eventSystem));
                             _selectedGameObject = result.gameObject;
-                            return;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
-                if (trigger)
-                {
-                    foreach (EventTrigger.Entry entry in trigger.triggers)
-                    {
-                        if (entry.eventID == EventTriggerType.PointerExit)
-                        {
-                            entry.callback.Invoke(new PointerEventData(_eventSystem));
-                            _selectedGameObject = null;
                             return;
                         }
                     }
