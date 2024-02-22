@@ -69,7 +69,7 @@ public class WorldUICanvas : MonoBehaviour
                 {
                     if (_selectedGameObject == null)
                     {
-                        EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
+                        EventTrigger trigger = result.gameObject.GetComponent<EventTrigger>();
                         if (trigger)
                         {
                             trigger.OnPointerEnter(new PointerEventData(_eventSystem));
