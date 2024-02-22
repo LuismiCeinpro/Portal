@@ -27,7 +27,7 @@ public class PlayerInteractableDetector : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.SphereCast(_raycastOrigin.position, 0.2f, _raycastOrigin.forward, out hitInfo, _raycastDistance))
         {
-            if (hitInfo.collider.gameObject.layer == _interactionLayer)
+            if (((1 << hitInfo.collider.gameObject.layer) & _interactionLayer) != 0)
             {
                 _crosshairAnimator.SetBool("Focus", true);
                 if (Input.GetKeyDown(KeyCode.E))
