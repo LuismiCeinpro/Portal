@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using PlasticGui;
 
 public class WorldUICanvas : MonoBehaviour
 {
@@ -68,9 +69,12 @@ public class WorldUICanvas : MonoBehaviour
                 {
                     if (_selectedGameObject == null)
                     {
-                        _selectedGameObject = result.gameObject;
                         EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
-                        if (trigger) trigger.OnPointerEnter(new PointerEventData(_eventSystem));
+                        if (trigger)
+                        {
+                            trigger.OnPointerEnter(new PointerEventData(_eventSystem));
+                            _selectedGameObject = result.gameObject;
+                        }
                     }
                     // Update the position of the cursor to match the hit position
                     Button button = null;
