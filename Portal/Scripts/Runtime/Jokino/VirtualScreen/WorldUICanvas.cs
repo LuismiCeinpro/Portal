@@ -70,7 +70,7 @@ public class WorldUICanvas : MonoBehaviour
                     {
                         _selectedGameObject = result.gameObject;
                         EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
-                        trigger.OnPointerEnter(new PointerEventData(_eventSystem));
+                        if (trigger) trigger.OnPointerEnter(new PointerEventData(_eventSystem));
                     }
                     // Update the position of the cursor to match the hit position
                     Button button = null;

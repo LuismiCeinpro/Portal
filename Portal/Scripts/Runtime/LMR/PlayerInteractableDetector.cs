@@ -25,7 +25,7 @@ public class PlayerInteractableDetector : MonoBehaviour
     {
         // Variable que almacenará el resultado del rayo
         RaycastHit hitInfo;
-        if (Physics.SphereCast(_raycastOrigin.position, 0.2f, _raycastOrigin.forward, out hitInfo, _raycastDistance))
+        if (Physics.SphereCast(_raycastOrigin.position, 0.05f, _raycastOrigin.forward, out hitInfo, _raycastDistance))
         {
             if (((1 << hitInfo.collider.gameObject.layer) & _interactionLayer) != 0)
             {
