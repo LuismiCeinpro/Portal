@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 public class WorldUICanvas : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class WorldUICanvas : MonoBehaviour
     private PointerEventData _pointerEventData;
     private EventSystem _eventSystem;
     [SerializeField] private RectTransform _cursor;
+    private GameObject _selectedGameObject;
+    [SerializeField] private UnityEvent onHover;
+    [SerializeField] private UnityEvent onLeave;
 
     void Start()
     {
@@ -62,6 +66,12 @@ public class WorldUICanvas : MonoBehaviour
             {
                 if (result.gameObject.name.ToLower() != "screen"&&result.gameObject.name.ToLower() !="cursor")
                 {
+                    if (_selectedGameObject == null)
+                    {
+                        _selectedGameObject = result.gameObject;
+                        EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
+                        trigger.OnPointerEnter(new PointerEventData(_eventSystem));
+                    }
                     // Update the position of the cursor to match the hit position
                     Button button = null;
                     if (result.gameObject.TryGetComponent(out button)) button.onClick.Invoke();
@@ -90,6 +100,11 @@ public class WorldUICanvas : MonoBehaviour
                         //createNeighboringHexagonList(result);
                     }
                         
+                }
+                else
+                {
+                    EventTrigger trigger = _selectedGameObject.GetComponent<EventTrigger>();
+                    trigger.OnPointerExit(new PointerEventData(_eventSystem));
                 }
 
             }
