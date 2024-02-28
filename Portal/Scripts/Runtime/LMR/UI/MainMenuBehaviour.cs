@@ -18,7 +18,9 @@ public class MainMenuBehaviour : MonoBehaviour
     [SerializeField] private Sprite[] _backgrounds;
     private int _currentBackgroundIndex = 0;
     private Vector3 _backgroundDirection;
-
+    [Header("Canvas windows")]
+    [SerializeField] private GameObject creditsContainer;
+    [SerializeField] private GameObject mainWindow;
     private void Start()
     {
         _canvasGroups[_currentCanvasGroup].DOFadeIn();
@@ -58,7 +60,10 @@ public class MainMenuBehaviour : MonoBehaviour
     {
         _background.DOFadeOut(() =>
         {
-           
+            creditsContainer.SetActive(true);
+            mainWindow.SetActive(false);
+
+
         });
         StopCoroutine(SelectBackground());
     }

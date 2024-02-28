@@ -22,6 +22,7 @@ public class CreditsAnimation : MonoBehaviour
     private float currentHeight = 0;
     private float targetHeight;
 
+    public GameObject mainMenuContainer;
     RectTransform titlesTransform;
     RectTransform namesTransform;
 
@@ -56,6 +57,16 @@ public class CreditsAnimation : MonoBehaviour
             titlesTransform.position = new Vector3(titlesTransform.position.x, titlesTransform.position.y + creditsSpeed, titlesTransform.position.z);
             namesTransform.position = new Vector3(namesTransform.position.x, namesTransform.position.y + creditsSpeed, namesTransform.position.z);
             currentHeight= currentHeight+ creditsSpeed;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            mainMenuContainer.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            gameObject.SetActive(false);
+            mainMenuContainer.SetActive(true);
         }
 
     }
