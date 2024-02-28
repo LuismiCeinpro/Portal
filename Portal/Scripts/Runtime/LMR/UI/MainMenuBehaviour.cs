@@ -19,8 +19,16 @@ public class MainMenuBehaviour : MonoBehaviour
     private int _currentBackgroundIndex = 0;
     private Vector3 _backgroundDirection;
     [Header("Canvas windows")]
-    [SerializeField] private GameObject creditsContainer;
     [SerializeField] private GameObject mainWindow;
+    [SerializeField] private GameObject optionsContainer;
+    [SerializeField] private GameObject creditsContainer;
+    [SerializeField] private GameObject displayContainer;
+    [SerializeField] private GameObject soundContainer;
+    [SerializeField] private GameObject accesibilityContainer;
+    [SerializeField] private GameObject controlsContainer;
+
+
+
     private void Start()
     {
         _canvasGroups[_currentCanvasGroup].DOFadeIn();
@@ -66,6 +74,50 @@ public class MainMenuBehaviour : MonoBehaviour
 
         });
         StopCoroutine(SelectBackground());
+    }
+
+    public void showOptions()
+    {
+
+            optionsContainer.SetActive(true);
+            mainWindow.SetActive(false);
+
+    }
+    public void showDisplay()
+    {
+        displayContainer.SetActive(true);
+        optionsContainer.SetActive(false);
+    }
+    public void showSound()
+    {
+        soundContainer.SetActive(true);
+        optionsContainer.SetActive(false);
+    }
+    public void showControls()
+    {
+        controlsContainer.SetActive(true);
+        optionsContainer.SetActive(false);
+    }
+    public void showAccesibility()
+    {
+        accesibilityContainer.SetActive(true);
+        optionsContainer.SetActive(false);
+    }
+
+    public void goBack(GameObject sender)
+    {
+        string previousMenuName = sender.transform.parent.name;
+        GameObject previousMenu = sender.transform.parent.gameObject;   
+        if (previousMenuName == "OptionsContent")
+        {
+            previousMenu.SetActive(false);
+            mainWindow.SetActive(true);
+            
+        }else if(previousMenuName == "SubmenuSound"|| previousMenuName == "SubmenuDisplay" || previousMenuName == "SubmenuAccesibility" || previousMenuName == "SubmenuControls")
+        {
+            previousMenu.SetActive(false);
+            optionsContainer.SetActive(true);
+        }
     }
 
     public void SelectInteractionType(int type)
